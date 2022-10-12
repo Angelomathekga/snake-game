@@ -14,12 +14,18 @@ class Snake:
 
     def create_snake(self):    # creates 3 new turtle objects, places them behind each other and appends them to the segments list.
         for position in STARTING_POSITIONS:
-            new_segment = Turtle("square")
-            new_segment.color("white")
-            new_segment.penup()
-            new_segment.goto(position)
-            self.segments.append(new_segment)
+            self.add_segment(position)
 
+
+    def add_segment(self, position):
+        new_segment = Turtle("square")
+        new_segment.color("white")
+        new_segment.penup()
+        new_segment.goto(position)
+        self.segments.append(new_segment)
+
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
     # Links all 3 objects to each other by making the last object goto the coordinates of the one before it and
     # ultimately making them follow the first one (the head of the snake)
     def move(self):
